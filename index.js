@@ -6,11 +6,14 @@ function createLoginTracker (userInfo){
         return "Account locked due to too many failed login attempts"}
             attemptCount += 1
         if (passwordAttempt === userInfo.password){
-        return "Login Successful!"}
-        else {return `Login Failed, wrong password. Attempts left: ${maxAttempts} - ${attemptCount}`}
-            console.log(`Attempt ${attemptCount} of ${maxAttempts}...`)
-        }
-    }
+            attemptCount = 0
+        return "Login successful"} 
+        if (attemptCount <= maxAttempts) {
+                return `Attempt ${attemptCount}: Login failed`}
+         else {return "Account locked due to too many failed login attempts"}
+         console.log(`Attempt ${attemptCount} of ${maxAttempts}...`)
+        } }
+    module.exports ={createLoginTracker}
     // Mock user data
     const mockUser = {
         username: "Admin",
@@ -18,8 +21,10 @@ function createLoginTracker (userInfo){
     }
     const user1Login = createLoginTracker(mockUser)
     console.log(user1Login("welcome"))
+    console.log(user1Login("password1"))
+    console.log(user1Login("password3"))
     console.log(user1Login("password123"))
-  
+
   
   
     
